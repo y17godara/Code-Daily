@@ -1,0 +1,144 @@
+<!-- Live Preview: https://y17godara.w3spaces.com/ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor Game</title>
+    <link rel="stylesheet" href="rock-paper-scissor.css">
+    <link rel="shortcut icon" href="https://i.imgur.com/n05Wr0e.png" type="image/x-icon">
+</head>
+<style>
+
+</style>
+
+<body>
+
+    <section id="main">
+
+        <button class="score button btn-rock" onclick="resetScore()">
+            RESET
+        </button>
+
+        <div class="container">
+
+            <a class="button btn-rock js-btn-rock" onclick="funRock()" href="#" style="--color:#1e9bff;">
+                Rock
+            </a>
+            <a class="button btn-rock js-btn-paper" onclick="funPaper()" href="#" style="--color: #ff1867;">
+                Paper
+            </a>
+            <a class="button btn-rock js-btn-scissor" onclick="funScissor()" href="#" style="--color: #6eff3e;">
+                Scissor
+            </a>
+
+        </div>
+    </section>
+
+
+    <script>
+        // variables
+        let playerChoice, computerChoice, result;
+
+        // reset button
+        function resetScore() {
+            score.wins = 0;
+            score.losses = 0;
+            score.ties = 0;
+
+            return console.log("Score Reset Successfully");
+        }
+
+
+        // starting score with last values
+        let score = JSON.parse(localStorage.getItem('score')) || {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+
+
+        // function for -computer choice
+        function generateComputerChoice() {
+            const randomNumber = Math.floor(Math.random() * 3) + 1 //random number genrator
+
+            if (randomNumber === 1) {
+                computerChoice = 'Rock'
+            }
+            else if (randomNumber === 2) {
+                computerChoice = 'Paper'
+            }
+            else if (randomNumber === 3) {
+                computerChoice = 'Scissor'
+            }
+            console.log("Computer Choice: ", computerChoice);
+            return computerChoice;
+        }
+
+        // alert scoreBoard Function
+        function alertScoreBoard() {
+            alert(`Player Choice: ${playerChoice} vs Computer Choice: ${computerChoice}\n${result}\nTotal Rounds: Wins ${score.wins} Looses ${score.losses} Ties ${score.ties}`);
+        }
+        // function for -client choice
+        function funRock() {
+            generateComputerChoice()
+            playerChoice = 'Rock';
+            console.log("Player Choice: ", playerChoice);
+            getScore(playerChoice, computerChoice);
+            alertScoreBoard();
+        }
+        function funPaper() {
+            generateComputerChoice()
+            playerChoice = 'Paper';
+            console.log("Player Choice: ", playerChoice);
+            getScore(playerChoice, computerChoice);
+            alertScoreBoard();
+        }
+        function funScissor() {
+            generateComputerChoice()
+            playerChoice = 'Scissor';
+            console.log("Player Choice: ", playerChoice);
+            getScore(playerChoice, computerChoice);
+            alertScoreBoard();
+            }
+
+        // result
+        function getScore() {
+
+            switch (playerChoice + computerChoice) {
+                case 'ScissorPaper':
+                case 'RockScissor':
+                case 'PaperRock':
+                    result = "YOU WIN!"
+                    score.wins += 1;
+                    break
+                case 'PaperScissor':
+                case 'ScissorRock':
+                case 'RockPaper':
+                    result = "YOU LOSE!"
+                    score.losses += 1;
+                    break
+                case 'PaperPaper':
+                case 'ScissorScissor':
+                case 'RockRock':
+                    result = "ITS A DRAW!"
+                    score.ties += 1;
+                    break
+            }
+
+            localStorage.setItem('score', JSON.stringify(score)); // saving score
+
+            console.log("Round Result: ", result);
+            console.log(score);
+            return result;
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

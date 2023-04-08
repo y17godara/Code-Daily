@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last-State Button</title>
+    <link rel="stylesheet" href="localStorage-button.css">
+</head>
+
+<body>
+
+    <section id="main">
+
+        <button onclick="buttonClicked()" class="js-button">Click</button>
+
+    </section>
+
+
+    <script>
+
+        function buttonClicked() {
+            console.log("Button Pressed");
+            let lastContent = document.querySelector('.js-button').innerText
+            if (lastContent === 'Click') {
+                document.querySelector('.js-button').innerHTML = 'Clicked';
+            }
+            else {
+                document.querySelector('.js-button').innerHTML = 'Click';
+            }
+        }
+
+        // localStorage.setItem("rememberState", "js-button");
+
+
+
+
+
+//         function clickCounter() {
+//   if (localStorage.clickcount) {
+//     localStorage.clickcount = Number(localStorage.clickcount)+1;
+//   } else {
+//     localStorage.clickcount = 1;
+//   }
+//   document.getElementById("demo").innerHTML = localStorage.clickcount;
+// }
+
+    </script>
+
+</body>
+
+</html>
