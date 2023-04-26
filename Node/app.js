@@ -45,7 +45,7 @@ app.get('/api/products/:productID', ( req, res ) => {
 });
 
 
-// testing
+// testing - will be working on it later
 // app.get('/api/products/:productID/reviews', ( req, res ) => {
 
 //     const data = reviews.id;
@@ -66,15 +66,22 @@ app.get('/api/v1/query', ( req, res) => {
     const { search, limit } = req.query;
     let sortedProducts = [...products];
 
+    // sorting
     if (search) {
         sortedProducts = sortedProducts.filter((product) => {
-            return product.name.startWith(search);
-        });
+            return product.name.startsWith(search);
+        })
     }
     if (limit) {
         sortedProducts = sortedProducts.slice(0, Number(limit));
     }
-    res.status(200).json(sortedProducts);
+    if (sortedProducts.length < 1) {
+        return res.status(200).json({success: true, data: []})
+    }
+    // sorting test url :
+    // http://localhost:5000/api/v1/query?search=albany&limit=1
+
+    return res.status(200).json(sortedProducts);
 });
 
 
