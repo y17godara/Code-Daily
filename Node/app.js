@@ -45,21 +45,36 @@ app.get('/api/products/:productID', ( req, res ) => {
 });
 
 
-// Reviews Api
-app.get('/api/products/:productID', ( req, res ) => {
-    const {productID} = req.params;
-    const singleProduct = products.find(
-        ( product ) => product.id === Number( productID )
-    )
-    //if product id not valid
-    if ( !singleProduct ) {
-        return res.status(404).send(`
-        <h1>Product doesnt Exist</h1>
-        <a href="/api/products"> back to products list </a>
-        `)
-    }
+// testing
+// app.get('/api/products/:productID/reviews', ( req, res ) => {
 
-    return res.json(singleProduct);
+//     const data = reviews.id;
+//     res.send(data);
+// });
+
+
+// reviews comments
+app.get('/api/products/:productID/reviews/:reviewID', ( req, res ) => {
+    console.log(req.params);
+    res.send('working');
+});
+
+
+// search query api
+app.get('/api/v1/query', ( req, res) => {
+    // console.log(req.query);
+    const { search, limit } = req.query;
+    let sortedProducts = [...products];
+
+    if (search) {
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.name.startWith(search);
+        });
+    }
+    if (limit) {
+        sortedProducts = sortedProducts.slice(0, Number(limit));
+    }
+    res.status(200).json(sortedProducts);
 });
 
 
