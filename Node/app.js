@@ -5,6 +5,7 @@ const app = express();
 const logger = require('./middleware.js');
 const auth = require('./autherize.js');
 
+// https://www.npmjs.com/package/morgan //for logger aleternative
 app.use('/', [logger,])
 app.use('/api', auth) //auth for api
 
