@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- customizing your config -->
+    <!--     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script> -->
+
+    <!-- adding some custom CSS -->
+    <!--     
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+      </style>
+       -->
+
+    <!-- using a first-party plugin -->
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> -->
+</head>
+
+<body class="h-screen w-screen bg-blue-100">
+    <div class="flex flex-col justify-center items-center">
+
+        <div class="w-full py-4 px-2 flex flex-col items-start justify-center h-full gap-4">
+            <h1 class="font-bold text-xl">Event Registration</h1>
+
+            <form class="flex flex-col gap-2" action="">
+                <div>
+                    <label for="fname">First Name</label>
+                    <br>
+                    <input type="text" placeholder="first name here" name="firstName" id="fname">
+                </div>
+
+                <div>
+                    <label for="lname">Last Name</label>
+                    <br>
+                    <input type="text" placeholder="last name here" name="LastName" id="lname">
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <br>
+                    <input type="email" placeholder="email here" id="email">
+                </div>
+
+                <div>
+                    <label for="phone">Phone</label>
+                    <br>
+                    <input type="tel" placeholder="phone no. here" pattern="[789][0-9]{9}" id="phone">
+                </div>
+
+                <div>
+                    <label class="font-[500]" for="occupation">Occupation</label>
+                    <br>
+                    <select name="occupation" id="occupation">
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                        <option value="self-employed">Self-Employed</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="font-[500]">Topics of Interest</label>
+                    <br>
+                    <label for="languages">HTML</label>
+                    <input type="checkbox" value="html" name="html" id="html">
+                    <br>
+                    <label for="english">CSS</label> 
+                    <input type="checkbox" id="css" name="css" value="css">
+                    <br>
+                    <label for="spanish">Javascript</label>
+                    <input type="checkbox" id="js" name="js" value="js">
+                </div>
+
+                <div>
+                    <label class="font-[500]" for="message">Comment</label>
+                    <br>
+                    <input class="h-[100px] w-[200px]" type="text" name="message" id="message">
+                </div>
+
+                <div>
+                    <button type="submit">Register</button>
+                    <br>
+                    <input type="submit" value="Submit">
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>
